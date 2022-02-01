@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoapp/providers/task.dart';
+import 'package:todoapp/providers/task_data.dart';
 
 class AddTask extends StatelessWidget {
   String newTaskTitle = '';
@@ -10,6 +12,7 @@ class AddTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var taskData = Provider.of<TaskData>(context);
     return Container(
       color: Color(0xFF757575),
       child: Container(
@@ -52,7 +55,7 @@ class AddTask extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                taskList.add(Task(name: newTaskTitle));
+                taskData.addTaskItem(newTaskTitle);
                 Navigator.of(context).pop();
               },
               child: Text('Ekle'),

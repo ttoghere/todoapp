@@ -7,17 +7,18 @@ class TaskItem extends StatelessWidget {
   final String taskTitle;
   //Parametreli void func için tanımlama ValueChanged<tip?> şeklinde olmalıdır
   final ValueChanged<bool?> checkBoxCallback;
+  final VoidCallback longPressCallBack;
   TaskItem({
+    required this.longPressCallBack,
     required this.checkBoxCallback,
     required this.taskTitle,
     required this.isValid,
   });
 
-  void checkboxState(bool? checkboxState) {}
-
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onLongPress: longPressCallBack,
       title: Text(
         taskTitle,
         style: TextStyle(

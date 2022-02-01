@@ -1,25 +1,17 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, must_be_immutable, prefer_final_fields
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoapp/providers/task.dart';
+import 'package:todoapp/providers/task_data.dart';
 import 'package:todoapp/screens/add_task_screen.dart';
 import 'package:todoapp/widgets/task_list.dart';
 import 'package:todoapp/widgets/task_screen_title.dart';
 
 class TaskScreen extends StatelessWidget {
-  List<Task> _tasks = [
-    Task(name: 'Go Home'),
-    Task(name: 'Drink Coffee'),
-    Task(name: 'Make breakfast'),
-    Task(name: 'Go to Gym'),
-  ];
-
-  void addTaskItem(String data) {
-    _tasks.add(Task(name: data));
-  }
-
   @override
   Widget build(BuildContext context) {
+    var taskData = Provider.of<TaskData>(context, listen: false);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -27,7 +19,7 @@ class TaskScreen extends StatelessWidget {
           showModalBottomSheet(
               context: context,
               builder: (context) => AddTask(
-                    taskList: _tasks,
+                    taskList: taskData.tasks,
                   ));
         },
         child: Icon(Icons.add),
@@ -64,7 +56,7 @@ class TaskScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50)),
                   child: CircleAvatar(
                     child: Text(
-                      '${_tasks.length} Görev',
+                      '${taskData.tasksLength} Görev',
                       style: TextStyle(
                           fontSize: 15,
                           color: Colors.red,
@@ -102,7 +94,7 @@ class TaskScreen extends StatelessWidget {
                     ]),
                     borderRadius: BorderRadius.circular(50)),
                 child: TaskList(
-                  tasksList: _tasks,
+                  tasksList: taskData.tasks,
                 ),
               ),
             ),
