@@ -25,8 +25,8 @@ class TaskItem extends StatelessWidget {
           decoration:
               (isValid) ? TextDecoration.lineThrough : TextDecoration.none,
           fontSize: 20,
-          color: Colors.white,
-          fontWeight: FontWeight.w400,
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
         ),
       ),
       trailing: Container(

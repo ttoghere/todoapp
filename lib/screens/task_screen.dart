@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoapp/providers/task.dart';
 import 'package:todoapp/providers/task_data.dart';
 import 'package:todoapp/screens/add_task_screen.dart';
 import 'package:todoapp/widgets/task_list.dart';
@@ -11,7 +10,9 @@ import 'package:todoapp/widgets/task_screen_title.dart';
 class TaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var taskData = Provider.of<TaskData>(context, listen: false);
+    var taskData = Provider.of<TaskData>(
+      context,
+    );
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -88,9 +89,10 @@ class TaskScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
                     gradient: RadialGradient(colors: [
-                      Colors.red,
-                      Colors.blue,
                       Colors.black,
+                      Colors.orange,
+                      Colors.blueGrey,
+                      Colors.transparent,
                     ]),
                     borderRadius: BorderRadius.circular(50)),
                 child: TaskList(
